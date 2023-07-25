@@ -1,0 +1,24 @@
+<ng-container  *ngIf="addNew">
+  <form [formGroup]="categoryForm">
+    <mat-form-field>
+      <input matInput class="width-100" [placeholder]="'Add new category'" formControlName="name"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="btn" (click)="submit()">
+      Submit
+    </button>
+  </form>
+</ng-container>
+<mat-list>
+  <mat-list-item *ngFor="let category of categories">
+    <span matListItemTitle>{{ category.name }}</span>
+    <span matListItemLine>{{category.parent?.name}}</span>
+    <span>
+      <button mat-raised-button color="primary" class="btn" (click)="addSubCategory(category)" >
+      Add subcategory
+    </button>
+      <button mat-raised-button color="primary" class="btn" (click)="showSubCatergories(category._id)" >
+      Show subcategories
+    </button>
+  </span>
+  </mat-list-item>
+</mat-list>

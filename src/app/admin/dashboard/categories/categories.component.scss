@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  height: 100vh;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+  .submit-btn{
+    height: 3rem ;
+  }
+}
