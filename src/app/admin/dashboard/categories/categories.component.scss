@@ -1,10 +1,40 @@
 :host {
   display: block;
   height: 100vh;
-    &::-webkit-scrollbar{
-        display: none;
+  width: 100%;
+
+  .submit-btn {
+    height: 3rem;
+  }
+  .restricted {
+    pointer-events: none;
+    user-select: none;
+  }
+  .list-container {
+    height: 80%;
+    width: 100%;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
     }
-  .submit-btn{
-    height: 3rem ;
+  }
+  .category-form {
+    z-index: 1000;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+  .catergories-header {
+    height: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.389);
+    h1 {
+      padding-left: 1rem;
+      line-height: 100px;
+      vertical-align: middle;
+    }
   }
 }

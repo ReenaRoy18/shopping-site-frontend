@@ -1,24 +1,42 @@
-<ng-container  *ngIf="addNew">
-  <form [formGroup]="categoryForm">
+<ng-container *ngIf="addNew">
+  <form class="category-form position-sticky " [formGroup]="categoryForm">
     <mat-form-field>
-      <input matInput class="width-100" [placeholder]="'Add new category'" formControlName="name"/>
+      <mat-label for="parent">Parent</mat-label>
+      <input matInput class="width-100" formControlName="parentName" readonly="true" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="parent">Category name</mat-label>
+      <input matInput class="width-100" [placeholder]="'Add new category'" formControlName="name" />
     </mat-form-field>
     <button mat-raised-button color="primary" class="btn" (click)="submit()">
       Submit
     </button>
+    <button mat-raised-button color="primary" class="btn" (click)="cancel()">
+      Cancel
+    </button>
   </form>
 </ng-container>
-<mat-list>
-  <mat-list-item *ngFor="let category of categories">
-    <span matListItemTitle>{{ category.name }}</span>
-    <span matListItemLine>{{category.parent?.name}}</span>
-    <span>
-      <button mat-raised-button color="primary" class="btn" (click)="addSubCategory(category)" >
-      Add subcategory
-    </button>
-      <button mat-raised-button color="primary" class="btn" (click)="showSubCatergories(category._id)" >
-      Show subcategories
-    </button>
-  </span>
-  </mat-list-item>
-</mat-list>
+<ng-container *ngIf="!addNew">
+  <div class="catergories-header">
+    <h1>All Catergories</h1>
+  </div>
+</ng-container>
+<div class="list-container">
+  <mat-list>
+    <mat-list-item *ngFor="let category of categories">
+      <span matListItemTitle>{{ category.name }}</span>
+      <span matListItemLine>{{category.parent?.name || "MAIN CATEGORY"}}</span>
+      <span>
+        <button mat-raised-button color="primary" class="btn mx-3" (click)="addSubCategory(category)">
+          Add subcategory
+        </button>
+        <button mat-raised-button color="primary" class="btn mx-3" (click)="showSubCatergories(category._id)">
+          Show subcategories
+        </button>
+        <button mat-raised-button color="warn" class="btn mx-3" (click)="deleteCategory(category._id)">
+          Delete
+        </button>
+      </span>
+    </mat-list-item>
+  </mat-list>
+</div>
