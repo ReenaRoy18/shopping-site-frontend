@@ -1,1 +1,79 @@
-<p>products works!</p>
+<mat-accordion class="content-wrapper">
+    <mat-expansion-panel #expansionPanel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Add Product
+            </mat-panel-title>
+            <mat-panel-description>
+                Click here to add the new product to the list
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="example-container">
+            <form class="product-container" (ngSubmit)="addProduct()" [formGroup]="productForm">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="product name" formControlName="name" required>
+                    <mat-error *ngIf="productForm.get('name')?.errors?.['required']">Name is required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input matInput placeholder="product description" formControlName="description" required>
+                    <mat-error *ngIf="productForm.get('description')?.errors?.['required']">Description is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option *ngFor="let category of categoryArr" [value]="category._id">
+                            <span>{{category.name}}</span>
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="productForm.get('category')?.errors?.['required']">Category is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label> Price</mat-label>
+                    <input matInput placeholder="price" formControlName="price" required>
+                    <mat-error *ngIf="productForm.get('price')?.errors?.['required']">Price is required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label> Offer</mat-label>
+                    <input matInput placeholder="offer" formControlName="offer" required>
+                    <mat-error *ngIf="productForm.get('offer')?.errors?.['required']">Offer is required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Unit</mat-label>
+                    <input matInput placeholder="product unit" formControlName="unit" required>
+                    <mat-error *ngIf="productForm.get('unit')?.errors?.['required']">Unit is required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Instock</mat-label>
+                    <input matInput placeholder="product instock" formControlName="inStock" required>
+                    <mat-error *ngIf="productForm.get('inStock')?.errors?.['required']">Instock is
+                        required</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label> Quantity</mat-label>
+                    <input matInput placeholder="product quantity" formControlName="quantity" required>
+                    <mat-error *ngIf="productForm.get('quantity')?.errors?.['required']">Quantity is
+                        required</mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="warn" type="reset" (click)="expansionPanel.close()">Cancel</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">Add
+                    Product</button>
+            </form>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div class="list-container">
+    <mat-list>
+        <mat-list-item *ngFor="let product of products">
+            <span matListItemTitle>{{ product.name }}</span>
+            <span matListItemLine>PP</span>
+            <span>
+
+            </span>
+        </mat-list-item>
+    </mat-list>
+</div>

@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+  padding: 2rem;
+  .content-wrapper {
+    width: 60%;
+    margin: auto;
+    display: block;
+  }
+  .product-container {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
